@@ -50,7 +50,13 @@ body {
 }
 
 .grid div.explosion {
-  background-image: url("images/ezgif.com-gif-maker.gif");
+  background-color: red;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.grid div.enemyMissile {
+  background-image: url("images/rocket-launcher-spacecraft-clip-art-png-favpng-EGp8U2ExAa7JE9qpf2124DCj3.jpeg");
   background-repeat: no-repeat;
   background-size: contain;
 }
