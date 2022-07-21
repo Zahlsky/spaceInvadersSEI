@@ -1,4 +1,5 @@
 function init() {
+  const gridWrapper = document.querySelector('.grid-wrapper')
 
   const grid = document.querySelector('.grid')
 
@@ -25,30 +26,69 @@ function init() {
   let randomFireTimer
   let fireDown
   let missileTimer
+  let missileCurrentPosition
+  const startPage = document.querySelector('.start-page')
+  const gameOverPage = document.querySelector('.gameOver')
 
 
 
   function createGrid() {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      cell.innerText = i
       cell.dataset.index = cells.push(cell)
       grid.appendChild(cell)
     }
-
   }
-  function pageLoad() {
+
+  // function pageLoad() {
+  //   gridWrapper.hide()
+  //   clearInterval(aliensTimer)
+  // }
+
+  function start(event) {
+    event.target.blur()
     clearInterval(aliensTimer)
-  }
-
-  function start() {
+    clearInterval(missileTimer)
     console.log('start')
     scoreDisplay.innerHTML = 0
     addShooter(currentPosition)
     addAliens(aliensStartingPosition)
-    aliensTimer = setInterval(moveAliens, 400)
+    aliensTimer = setInterval(moveAliens, 100)
     fireMissiles()
     randomFire()
+    hideStartPage()
+  }
+
+  function hideStartPage() {
+    startPage.style.display = 'none'
+  }
+
+  // function gameOverEnd() {
+  //   if (scoreDisplay = 'GAME OVER') {
+  //     gridWrapper.classList.add(gameOverPage)
+  //     gridWrapper.classList.remove(startPage)
+  //     removeAliens()
+  //     removeShooter()
+  //   }
+
+  //   gameOverEnd()
+  // }
+
+  function gameOver() {
+    scoreDisplay.innerHTML = 'none'
+    scoreDisplay.innerHTML = 'GAME OVER'
+    // startPage.style.display = 'flex'
+    // startPage.innerHTML = 'GAME OVER'
+    // startPage.style.margin = '0px 0px 0px 0px'
+    // startPage.style.fontSize = '32px'
+    clearInterval(aliensTimer)
+    clearInterval(fireDown)
+    clearInterval(missileTimer)
+    clearInterval(laserTimer)
+    removeAliens()
+    removeMissile()
+    // removeEventListener('keydown', shootLaser)
+    // removeEventListener('keydown', moveShooter)
   }
 
 
@@ -106,18 +146,25 @@ function init() {
     if (cells[currentPosition].classList.contains(charAliClass, charClass)) {
       cells[currentPosition].classList.remove(charAliClass, charClass)
       cells[currentPosition].classList.add(charExplosionClass)
+      gameOver()
 
-      console.log('game over')
-      scoreDisplay.innerHTML = 'GAME OVER'
-      clearInterval(aliensTimer)
-      clearInterval(laserTimer)
+      // console.log('game over')
+      // scoreDisplay.innerHTML = 'GAME OVER'
+      // clearInterval(aliensTimer)
+      // clearInterval(laserTimer)
+      // clearInterval(fireDown)
+      // clearInterval(missileTimer)
+
     }
 
     for (let i = 0; i < aliens.length; i++) {
       if (aliens[i] > (cells.length)) {
-        scoreDisplay.innerHTML = 'GAME OVER'
-        clearInterval(laserTimer)
-        clearInterval(aliensTimer)
+        gameOver()
+        // scoreDisplay.innerHTML = 'GAME OVER'
+        // clearInterval(aliensTimer)
+        // clearInterval(fireDown)
+        // clearInterval(missileTimer)
+        // clearInterval(laserTimer)
       }
     }
   }
@@ -166,25 +213,28 @@ function init() {
       if (cells[missileCurrentPosition].classList.contains(charClass)) {
         cells[missileCurrentPosition].classList.remove(charClass, charMissileClass)
         cells[missileCurrentPosition].classList.add(charExplosionClass)
-        clearInterval(fireDown)
-        clearInterval(laserTimer)
-        clearInterval(aliensTimer)
-        clearInterval(missileTimer)
-        scoreDisplay.innerHTML = 'GAME OVER'
+        gameOver()
+        // clearInterval(fireDown)
+        // clearInterval(laserTimer)
+        // clearInterval(aliensTimer)
+        // clearInterval(missileTimer)
+        // scoreDisplay.innerHTML = 'GAME OVER'
+
 
       }
 
     }
 
-
-
-    fireDown = setInterval(randomDown, 300)
+    fireDown = setInterval(randomDown, 100)
   }
 
   function fireMissiles() {
     missileTimer = setInterval(randomFire, 4000)
   }
 
+  function removeMissile() {
+    missileCurrentPosition.classList.remove(charMissileClass)
+  }
 
 
 
@@ -242,9 +292,11 @@ function init() {
     function levelComplete() {
 
       if (score === 400) {
-        level.innerHTML = 'Level 1 Complete!'
+        level.innerHTML = ' Complete!'
         clearInterval(aliensTimer)
         clearInterval(laserTimer)
+        clearInterval(fireDown)
+        clearInterval(missileTimer)
       }
 
     }
@@ -254,10 +306,11 @@ function init() {
     // function alienHit() {
     //   const laserCurrentPosition = currentPosition
 
-
-
-
   }
+
+  // function disableStartButton(startButton) {
+  //   startButton.disabled = true
+  // }
 
 
 
@@ -295,7 +348,7 @@ function init() {
 
 
   createGrid()
-  pageLoad()
+  // pageLoad()
   // start()
 }
 

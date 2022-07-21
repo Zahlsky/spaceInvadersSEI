@@ -6,26 +6,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="app.js" charset="utf-8"></script>
   <link rel="stylesheet" href="main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <title>Space Invaders Game</title>
 </head>
 
 <body>
 
   <main>
-    <header>SPACE INVADERS</header>
+    <header></header>
 
-    <div class="scorelevel">
+    <div class="scoreLevel">
       <div class="score">SCORE = <span class="results"></span></div>
-      <div class="level"> <span class="levelNum"></span></div>
+      <div class="level"> Level 1<span class="levelNum"></span></div>
     </div>
+    <div class="end">
+      <div class="grid-wrapper">
+        <div class="start-page">
+          <p> Kill all the aliens to win. Avoid the missiles, avoid the aliens. 'UP' to shoot, 'LEFT' and 'RIGHT' arrows
+            to move</p>
+          <button class="start">START</button>
+        </div>
 
-    <div class="grid-wrapper">
-      <div class="grid"></div>
+        <div class="grid">
+        </div>
+      </div>
     </div>
   </main>
-
-  <button class="start">START</button>
-
 </body>
 
 </html>

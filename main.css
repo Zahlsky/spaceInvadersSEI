@@ -1,32 +1,48 @@
 * {
   box-sizing: border-box;
+  font-family: VT323;
+
 }
 
 body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100vh;
-  margin: 0;
+  margin: auto;
+  background-color: black;
 }
 
+
 .grid-wrapper {
-  height: 100vh;
+  width: 600px;
+  height: 700px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url("images/sidpt2.png");
+  background-position: center;
+  background-size: cover;
+
 }
 
 .grid {
 
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+
   display: flex;
   flex-wrap: wrap;
   height: 100%;
   justify-content: center;
-  height: 600px;
-  width: 600px;
+  margin-top: 150px;
+  height: 350px;
+  width: 450px;
+  background-position: center;
+  background-size: cover;
+  /* background-color: whitesmoke; */
+
 }
 
 .grid div {
-  border: 1px solid lightgrey;
   height: 5%;
   width: 5%;
 }
@@ -50,7 +66,7 @@ body {
 }
 
 .grid div.explosion {
-  background-color: red;
+  background-image: url("images/ezgif.com-gif-maker.gif");
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -60,3 +76,48 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+.score {
+  animation: blink-animation 1s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+.scoreLevel {
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  color: greenyellow;
+  font-size: 24px;
+}
+
+.start-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  color: greenyellow;
+  margin-left: 180px;
+}
+
+/* .gameOver {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: greenyellow;
+  margin-left: 180px;
+  font-size: 40px;
+} */
