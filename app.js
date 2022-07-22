@@ -28,7 +28,7 @@ function init() {
   let missileTimer
   let missileCurrentPosition
   const startPage = document.querySelector('.start-page')
-  const gameOverPage = document.querySelector('.gameOver')
+  const audio = document.querySelector('audio')
 
 
 
@@ -76,8 +76,7 @@ function init() {
 
   function gameOver() {
     scoreDisplay.innerHTML = 'GAME OVER'
-    // startPage.style.display = 'flex'
-    // startPage.innerHTML = 'GAME OVER'
+    // startPage.style.display = 'inherit'
     // startPage.style.margin = '0px 0px 0px 0px'
     // startPage.style.fontSize = '20px'
     clearInterval(aliensTimer)
@@ -86,10 +85,14 @@ function init() {
     removeAliens()
     removeMissile()
     clearInterval(laserTimer)
-    removeShooterEventListener()
+    removeShooter(currentPosition)
+
+
+    // removeShooterEventListener(moveShooter)
     // removeEventListener('keydown', shootLaser)
     // removeEventListener('keydown', moveShooter)
   }
+
 
 
   // add Aliens array to the cells 
@@ -159,6 +162,7 @@ function init() {
 
     for (let i = 0; i < aliens.length; i++) {
       if (aliens[i] > (cells.length)) {
+        cells[currentPosition].classList.add(charExplosionClass)
         gameOver()
         // scoreDisplay.innerHTML = 'GAME OVER'
         // clearInterval(aliensTimer)
@@ -285,8 +289,9 @@ function init() {
     }
 
     if (event.keyCode === 38) {
-      console.log('spacebar')
+      // console.log('spacebar')
       laserTimer = setInterval(moveLaserUp, 100)
+      shootFx()
     }
 
     function levelComplete() {
@@ -306,6 +311,11 @@ function init() {
     // function alienHit() {
     //   const laserCurrentPosition = currentPosition
 
+  }
+
+  function shootFx() {
+    audio.src = '.sounds/shoot.wav'
+    audio.play()
   }
 
   // function disableStartButton(startButton) {
@@ -340,15 +350,15 @@ function init() {
   // laserTimer = setInterval(shootLaser, 130)
 
 
-  document.addEventListener('keydown', shootLaser)
+  document.addEventListener('keydown', shootLaser, shootFx)
 
   document.addEventListener('keydown', moveShooter)
 
   startButton.addEventListener('click', start)
 
-  function removeShooterEventListener() {
-    document.removeEventListener('keydown', moveShooter)
-  }
+  // function removeShooterEventListener(moveShooter) {
+  //   document.removeEventListener('keydown', moveShooter)
+  // }
 
 
   createGrid()
