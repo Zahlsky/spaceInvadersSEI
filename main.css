@@ -48,21 +48,22 @@ body {
 }
 
 .grid div.shooter {
-  background-image: url("images/220-2205305_space-invaders-illustration-hd-png-download.jpeg");
+  background-image: url("images/220-2205305_space-invaders-illustration-hd-png-download-removebg-preview.png");
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .grid div.alien {
-  background-image: url("images/248-2480736_space-invaders-alien-png-space-invaders-alien-sprite.jpeg");
+  background-image: url("images/248-2480736_space-invaders-alien-png-space-invaders-alien-sprite-removebg-preview.png");
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .grid div.laser {
-  background-color: aqua;
+  background-image: url("images/12-851553504.jpg");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
+
 }
 
 .grid div.explosion {
@@ -72,9 +73,10 @@ body {
 }
 
 .grid div.enemyMissile {
-  background-image: url("images/rocket-launcher-spacecraft-clip-art-png-favpng-EGp8U2ExAa7JE9qpf2124DCj3.jpeg");
+  background-image: url("images/rocket-launcher-spacecraft-clip-art-png-favpng-EGp8U2ExAa7JE9qpf2124DCj3-removebg-preview.png");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
+  background-position: center;
 }
 
 .score {

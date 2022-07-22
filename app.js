@@ -75,18 +75,18 @@ function init() {
   // }
 
   function gameOver() {
-    scoreDisplay.innerHTML = 'none'
     scoreDisplay.innerHTML = 'GAME OVER'
     // startPage.style.display = 'flex'
     // startPage.innerHTML = 'GAME OVER'
     // startPage.style.margin = '0px 0px 0px 0px'
-    // startPage.style.fontSize = '32px'
+    // startPage.style.fontSize = '20px'
     clearInterval(aliensTimer)
     clearInterval(fireDown)
     clearInterval(missileTimer)
-    clearInterval(laserTimer)
     removeAliens()
     removeMissile()
+    clearInterval(laserTimer)
+    removeShooterEventListener()
     // removeEventListener('keydown', shootLaser)
     // removeEventListener('keydown', moveShooter)
   }
@@ -198,7 +198,7 @@ function init() {
   }
 
   function randomFire() {
-    let missileStartPosition = Math.floor(Math.random() * 20)
+    const missileStartPosition = Math.floor(Math.random() * 20)
     console.log(missileStartPosition)
     let missileCurrentPosition = missileStartPosition
 
@@ -345,6 +345,10 @@ function init() {
   document.addEventListener('keydown', moveShooter)
 
   startButton.addEventListener('click', start)
+
+  function removeShooterEventListener() {
+    document.removeEventListener('keydown', moveShooter)
+  }
 
 
   createGrid()
